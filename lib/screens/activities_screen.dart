@@ -44,7 +44,7 @@ class ActivitiesScreen extends StatelessWidget {
                               child: Text(
                                 activity.name,
                                 style: TextStyle(
-                                  fontSize: 18.0,
+                                  fontSize: 15.0,
                                   fontWeight: FontWeight.w600,
                                 ),
                                 maxLines: 2,
@@ -53,21 +53,23 @@ class ActivitiesScreen extends StatelessWidget {
                             ),
                             Column(
                               children: <Widget>[
-                                Text('\$${activity.price}',
+                                Text('${activity.price}K',
                                     style: TextStyle(
-                                      fontSize: 22.0,
+                                      fontSize: 13.0,
                                       fontWeight: FontWeight.w600,
                                     )),
                                 Text(
-                                  'per pax',
-                                  style: TextStyle(color: Colors.grey),
+                                  '/ pax',
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 13.0),
                                 )
                               ],
                             ),
                           ],
                         ),
                         Text(activity.type,
-                            style: TextStyle(color: Colors.grey)),
+                            style:
+                                TextStyle(color: Colors.grey, fontSize: 10.0)),
                         _buildRatingStars(activity.rating),
                         SizedBox(height: 10.0),
                         Row(
@@ -110,13 +112,13 @@ class ActivitiesScreen extends StatelessWidget {
                                     actions: <Widget>[
                                       TextButton(
                                         onPressed: () =>
-                                            Navigator.pop(context, 'tidak'),
-                                        child: const Text('tidak'),
+                                            Navigator.pop(context, 'Tidak'),
+                                        child: const Text('Tidak'),
                                       ),
                                       TextButton(
                                         onPressed: () =>
-                                            Navigator.pop(context, 'ya'),
-                                        child: const Text('ya'),
+                                            Navigator.pop(context, 'Iya'),
+                                        child: const Text('Iya'),
                                       ),
                                     ],
                                   ),

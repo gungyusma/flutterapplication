@@ -150,7 +150,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                     child: Text(
                                       activity.name,
                                       style: TextStyle(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         fontWeight: FontWeight.w600,
                                       ),
                                       maxLines: 2,
@@ -159,21 +159,23 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                   ),
                                   Column(
                                     children: <Widget>[
-                                      Text('\$${activity.price}',
+                                      Text('${activity.price}K',
                                           style: TextStyle(
-                                            fontSize: 22.0,
+                                            fontSize: 12.0,
                                             fontWeight: FontWeight.w600,
                                           )),
                                       Text(
-                                        'per pax',
-                                        style: TextStyle(color: Colors.grey),
+                                        '/ pax',
+                                        style: TextStyle(
+                                            color: Colors.grey, fontSize: 15.0),
                                       )
                                     ],
                                   ),
                                 ],
                               ),
                               Text(activity.type,
-                                  style: TextStyle(color: Colors.grey)),
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 10.0)),
                               _buildRatingStars(activity.rating),
                               SizedBox(height: 10.0),
                               Row(
@@ -214,7 +216,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
                           child: Image(
-                            width: 110.0,
+                            width: 100.0,
                             image: AssetImage(activity.imageUrl),
                             fit: BoxFit.cover,
                           ),

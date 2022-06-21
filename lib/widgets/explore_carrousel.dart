@@ -16,9 +16,9 @@ class ExploreCarrousel extends StatelessWidget {
             children: <Widget>[
               Text('Tempat terpopuler',
                   style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5)),
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  )),
               // GestureDetector(
               //   onTap: () => print('See All'),
               //   child: Text('See All',

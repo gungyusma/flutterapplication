@@ -115,7 +115,7 @@ class ExploreScreen extends StatelessWidget {
                               ),
                               FittedBox(
                                 child: Text(
-                                  '\$ ${recommendedModel.price.toString()} / orang',
+                                  '${recommendedModel.price.toString()} K / orang',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       color: Colors.white),

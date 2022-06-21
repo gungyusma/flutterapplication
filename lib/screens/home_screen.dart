@@ -52,21 +52,35 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: EdgeInsets.symmetric(vertical: 30.0),
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 120.0),
+          padding: const EdgeInsets.only(left: 20.0, right: 60.0),
           child: Text(
-            'Mau liburan kemana kali ini?',
-            style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+            'Mau liburan kemana kali ini? ✈️',
+            style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
           ),
         ),
-        SizedBox(
-          height: 20.0,
-        ),
+        Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 40.0, top: 20.0),
+            child: TextField(
+                decoration: InputDecoration(
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+              ),
+              hintText: 'Cari destinasi impianmu',
+              contentPadding: EdgeInsets.all(15),
+              filled: true,
+              fillColor: Color.fromARGB(95, 207, 207, 207),
+            ))),
         SizedBox(
           height: 20.0,
         ),
         DestinationCarousel(),
         SizedBox(
-          height: 20.0,
+          height: 5.0,
         ),
         HotelCarousel(),
       ],
@@ -75,15 +89,32 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: EdgeInsets.symmetric(vertical: 30.0),
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 120.0),
+          padding: const EdgeInsets.only(left: 20.0, right: 60.0),
           child: Text(
-            'Destinasi paling dicari tahun ini',
-            style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+            'Destinasi paling dicari tahun ini 🏆',
+            style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
           ),
         ),
         SizedBox(
           height: 20.0,
         ),
+        Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 40.0, top: 20.0),
+            child: TextField(
+                decoration: InputDecoration(
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+              ),
+              hintText: 'Cari tempat',
+              contentPadding: EdgeInsets.all(15),
+              filled: true,
+              fillColor: Color.fromARGB(95, 207, 207, 207),
+            ))),
         SizedBox(
           height: 20.0,
         ),
@@ -104,37 +135,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_currentTab),
-        // ListView(
-        //   padding: EdgeInsets.symmetric(vertical: 30.0),
-        //   children: <Widget>[
-        //     Padding(
-        //       padding: const EdgeInsets.only(left: 20.0, right: 120.0),
-        //       child: Text(
-        //         'Mau liburan kemana kali ini?',
-        //         style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-        //       ),
-        //     ),
-        //     SizedBox(
-        //       height: 20.0,
-        //     ),
-        //     Row(
-        //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //       children: _icons
-        //           .asMap()
-        //           .entries
-        //           .map((MapEntry map) => _buildIcon(map.key))
-        //           .toList(),
-        //     ),
-        //     SizedBox(
-        //       height: 20.0,
-        //     ),
-        //     DestinationCarousel(),
-        //     SizedBox(
-        //       height: 20.0,
-        //     ),
-        //     HotelCarousel(),
-        //   ],
-        // ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentTab,

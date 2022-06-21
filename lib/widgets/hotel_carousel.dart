@@ -14,18 +14,9 @@ class HotelCarousel extends StatelessWidget {
             children: <Widget>[
               Text('Rekomendasi Hotel Terbaik',
                   style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5)),
-              // GestureDetector(
-              //   onTap: () => print('See All'),
-              //   child: Text('See All',
-              //       style: TextStyle(
-              //           color: Theme.of(context).primaryColor,
-              //           fontSize: 16.0,
-              //           fontWeight: FontWeight.w600,
-              //           letterSpacing: 1.0)),
-              // ),
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.bold,
+                  )),
             ],
           ),
         ),
@@ -37,7 +28,7 @@ class HotelCarousel extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               Hotel hotel = hotels[index];
               return Container(
-                margin: EdgeInsets.all(10.0),
+                margin: EdgeInsets.only(left: 30.0, top: 10.0),
                 width: 240.0,
                 child: Stack(
                   alignment: Alignment.topCenter,
@@ -73,7 +64,7 @@ class HotelCarousel extends StatelessWidget {
                                 height: 2.0,
                               ),
                               Text(
-                                '\$${hotel.price} / night',
+                                '${hotel.price} juta / malam',
                                 style: TextStyle(
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.w600),
