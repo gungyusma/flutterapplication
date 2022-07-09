@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import '../models/explore_model.dart';
 
 class ExploreScreen extends StatelessWidget {
-  final RecommendedModel recommendedModel;
-  ExploreScreen(this.recommendedModel);
+  ExploreScreen(this.explor, this.explorkey);
+  final Map explor;
+  final String explorkey;
+  
 
   @override
   Widget build(BuildContext context) {
+    int harga = explor['price'];
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -17,13 +19,13 @@ class ExploreScreen extends StatelessWidget {
             PageView(
               scrollDirection: Axis.horizontal,
               children: List.generate(
-                recommendedModel.images.length,
+                explor['images'].length,
                 (int index) => Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(
-                          recommendedModel.images[1]),
+                      image:
+                          CachedNetworkImageProvider(explor['images'][index]),
                     ),
                   ),
                 ),
@@ -73,7 +75,7 @@ class ExploreScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 19.2),
                       child: Text(
-                        recommendedModel.tagLine,
+                        explor['tagLine'],
                         maxLines: 2,
                         overflow: TextOverflow.fade,
                         style: TextStyle(
@@ -85,7 +87,7 @@ class ExploreScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 19.2),
                       child: Text(
-                        recommendedModel.description,
+                        explor['description'],
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -115,7 +117,7 @@ class ExploreScreen extends StatelessWidget {
                               ),
                               FittedBox(
                                 child: Text(
-                                  '${recommendedModel.price.toString()} K / orang',
+                                  '$harga K / orang',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       color: Colors.white),

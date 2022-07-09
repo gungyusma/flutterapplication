@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../models/hotel_model.dart';
 
 class HotelCarousel extends StatelessWidget {
+  HotelCarousel(this.hotel, this.hotelkey);
+  final List<Map> hotel;
+  final List<String> hotelkey;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,9 +26,9 @@ class HotelCarousel extends StatelessWidget {
           height: 300.0,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: hotels.length,
+            itemCount: hotel.length,
             itemBuilder: (BuildContext context, int index) {
-              Hotel hotel = hotels[index];
+              int harga =  hotel[index]['price'];
               return Container(
                 margin: EdgeInsets.only(left: 30.0, top: 10.0),
                 width: 240.0,
@@ -47,7 +49,7 @@ class HotelCarousel extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               Text(
-                                hotel.name,
+                                hotel[index]['name'],
                                 style: TextStyle(
                                     fontSize: 22.0,
                                     fontWeight: FontWeight.w600,
@@ -57,14 +59,14 @@ class HotelCarousel extends StatelessWidget {
                                 height: 2.0,
                               ),
                               Text(
-                                hotel.address,
+                                hotel[index]['address'],
                                 style: TextStyle(color: Colors.grey),
                               ),
                               SizedBox(
                                 height: 2.0,
                               ),
                               Text(
-                                '${hotel.price} juta / malam',
+                                '$harga juta / malam',
                                 style: TextStyle(
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.w600),
@@ -91,7 +93,7 @@ class HotelCarousel extends StatelessWidget {
                         child: Image(
                           height: 180.0,
                           width: 240.0,
-                          image: AssetImage(hotel.imageUrl),
+                          image: AssetImage(hotel[index]['imageUrl']),
                           fit: BoxFit.cover,
                         ),
                       ),

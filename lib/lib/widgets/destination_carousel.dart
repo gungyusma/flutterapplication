@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel_ui_starter/screens/explore_screen.dart';
+import '../screens/destination_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../models/explore_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'dart:io';
 
-class ExploreCarrousel extends StatelessWidget {
-  @override
+class DestinationCarousel extends StatelessWidget {
+  DestinationCarousel(this.destination,this.activity, this.keys);
+  final List<Map> destination;
+  final List<Map> activity;
+  final List<String> keys;
+
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
@@ -14,20 +19,11 @@ class ExploreCarrousel extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text('Tempat terpopuler',
+              Text('Destinasi pilihan untukmu',
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 17.0,
                     fontWeight: FontWeight.bold,
                   )),
-              // GestureDetector(
-              //   onTap: () => print('See All'),
-              //   child: Text('See All',
-              //       style: TextStyle(
-              //           color: Theme.of(context).primaryColor,
-              //           fontSize: 16.0,
-              //           fontWeight: FontWeight.w600,
-              //           letterSpacing: 1.0)),
-              // ),
             ],
           ),
         ),
@@ -35,70 +31,36 @@ class ExploreCarrousel extends StatelessWidget {
           height: 300.0,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: recommendations.length,
+            itemCount: destination.length,
             itemBuilder: (BuildContext context, int index) {
-              RecommendedModel recommendation = recommendations[index];
               return GestureDetector(
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => ExploreScreen(recommendation),
+                      builder: (_) => DestinationScreen(destination[index],activity),
                     )),
                 child: Container(
-                  margin: EdgeInsets.all(10.0),
                   width: 210.0,
                   child: Stack(
                     alignment: Alignment.topCenter,
                     children: <Widget>[
-                      Positioned(
-                        bottom: 15.0,
-                        child: Container(
-                          height: 290.0,
-                          width: 200.0,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(0, 255, 255, 255),
-                              borderRadius: BorderRadius.circular(20.0)),
-                          child: Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                // Text(
-                                //   '${destination.activities.length} activities',
-                                //   style: TextStyle(
-                                //       fontSize: 18.0,
-                                //       fontWeight: FontWeight.w600,
-                                //       wordSpacing: 2),
-                                // ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
                       Container(
+                        margin: EdgeInsets.only(left: 10.0, top: 10.0),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20.0),
-                          boxShadow: [
-                            // BoxShadow(
-                            //   color: Colors.black26,
-                            //   offset: Offset(0.0, 2.0),
-                            //   blurRadius: 6.0,
-                            // )
-                          ],
                         ),
                         child: Stack(
                           children: <Widget>[
                             Hero(
-                              tag: recommendation.image,
+                              tag: destination[index]['imageUrl'],
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20.0),
                                 child: Image(
-                                  height: 310.0,
-                                  width: 200.0,
-                                  image: CachedNetworkImageProvider(
-                                      recommendation.image),
+                                  height: 250.0,
+                                  width: 180.0,
+                                  image: AssetImage(
+                                      destination[index]['imageUrl']),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -110,23 +72,22 @@ class ExploreCarrousel extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    recommendation.name,
-                                    softWrap: true,
+                                    destination[index]['city'],
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 22.0,
+                                      fontSize: 24.0,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                   Row(
                                     children: <Widget>[
                                       Icon(
-                                        FontAwesomeIcons.dollarSign,
+                                        FontAwesomeIcons.locationArrow,
                                         size: 10.0,
                                         color: Colors.white,
                                       ),
                                       SizedBox(width: 5.0),
-                                      Text(recommendation.price.toString(),
+                                      Text(destination[index]["country"],
                                           style:
                                               TextStyle(color: Colors.white)),
                                     ],

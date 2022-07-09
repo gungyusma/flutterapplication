@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../models/activity_model.dart';
-import '../models/destination_model.dart';
 
 class ActivitiesScreen extends StatelessWidget {
+  ActivitiesScreen(this.activity, this.activitykeys);
+  final List<Map> activity;
+  final List<String> activitykeys;
   Text _buildRatingStars(int rating) {
     String stars = '';
     for (int i = 0; i < rating; i++) {
@@ -17,9 +18,8 @@ class ActivitiesScreen extends StatelessWidget {
         body: Center(
       child: ListView.builder(
           padding: EdgeInsets.only(top: 10.0, bottom: 15.0),
-          itemCount: aktivitastersedia.length,
+          itemCount: activity.length,
           itemBuilder: (BuildContext context, int index) {
-            Activity activity = aktivitastersedia[index];
             return Stack(
               children: <Widget>[
                 Container(
@@ -42,7 +42,7 @@ class ActivitiesScreen extends StatelessWidget {
                             Container(
                               width: 120.0,
                               child: Text(
-                                activity.name,
+                                activity[index]['name'],
                                 style: TextStyle(
                                   fontSize: 15.0,
                                   fontWeight: FontWeight.w600,
@@ -53,7 +53,7 @@ class ActivitiesScreen extends StatelessWidget {
                             ),
                             Column(
                               children: <Widget>[
-                                Text('${activity.price}K',
+                                Text('${activity[index]['price']}K',
                                     style: TextStyle(
                                       fontSize: 13.0,
                                       fontWeight: FontWeight.w600,
@@ -67,10 +67,10 @@ class ActivitiesScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Text(activity.type,
+                        Text(activity[index]['type'],
                             style:
                                 TextStyle(color: Colors.grey, fontSize: 10.0)),
-                        _buildRatingStars(activity.rating),
+                        _buildRatingStars(activity[index]['rating']),
                         SizedBox(height: 10.0),
                         Row(
                           children: <Widget>[
@@ -82,13 +82,13 @@ class ActivitiesScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: Theme.of(context).accentColor,
                                   borderRadius: BorderRadius.circular(10.0)),
-                              child: Text(activity.startTimes[0]),
+                              child: Text(activity[index]['startTimes'][0]),
                             ),
                             SizedBox(
                               width: 10.0,
                             ),
                             Container(
-                              padding: EdgeInsets.all(5.0),
+                              
                               width: 70.0,
                               height: 30,
                               alignment: Alignment.center,
@@ -123,7 +123,9 @@ class ActivitiesScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                child: const Text('pesan'),
+                                child: const Text('pesan',style: TextStyle(
+                                  height: 1,
+                                ),),
                               ),
                             )
                           ],
@@ -140,7 +142,7 @@ class ActivitiesScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20.0),
                     child: Image(
                       width: 110.0,
-                      image: AssetImage(activity.imageUrl),
+                      image: AssetImage(activity[index]['imageUrl']),
                       fit: BoxFit.cover,
                     ),
                   ),
